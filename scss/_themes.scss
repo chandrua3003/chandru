@@ -1,0 +1,17 @@
+@use 'variables' as *;
+// Navy + champagne gold
+:root {
+  color-scheme: dark;
+  --bg: #0a1322; --bg2: #101c33; --bg2-rgb: 16, 28, 51;
+  --ink: #eef2f9; --text: #b4bfd3; --muted: #8d9bb5;
+  --accent: #d4b06a; --accent-soft: #ead7a8; --accent-rgb: 212, 176, 106;
+  --btn-1: #ead7a8; --btn-2: #d4b06a; --on-accent: #070e1a;
+  --steel: #5f86c9;
+  --tint-rgb: 255, 255, 255;
+  --glass-1: rgba(255, 255, 255, .09); --glass-2: rgba(255, 255, 255, .04);
+  --glass-border: rgba(255, 255, 255, .14);
+  --glass-shadow: 0 10px 40px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .12);
+  --dot: #5ee3a1;
+  --orb1: #2a4f94; --orb2: rgba(212, 176, 106, .55); --orb3: #1c3a6e; --orb-op: .5;
+}
+

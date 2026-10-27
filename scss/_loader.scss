@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+$droid: #3ddc84;
+
+.is-loading { overflow: hidden; }
+
+.loader {
+  position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: 1rem;
+  background: radial-gradient(900px 600px at 50% 40%, #14264a, var(--bg) 70%);
+  transition: opacity .6s $ease, visibility .6s, transform .6s $ease;
+  &::before, &::after { content: ''; position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; animation: drift 10s ease-in-out infinite alternate; }
+  &::before { width: 380px; height: 380px; background: rgba($droid, .5); top: 8%; left: 10%; }
+  &::after { width: 340px; height: 340px; background: var(--orb1); bottom: 6%; right: 8%; animation-delay: -5s; }
+  &.is-done { opacity: 0; visibility: hidden; transform: scale(1.04); pointer-events: none; }
+
+  &__card { position: relative; width: min(380px, 100%); padding: 2rem 1.8rem 1.6rem; text-align: center; border-radius: $radius-lg; animation: card-in .8s $ease both; }
+  &__title { font-family: $font-display; color: var(--ink); font-size: 1.25rem; margin: .4rem 0 1.3rem; span { color: var(--muted); font-size: .9rem; font-family: $font-body; } }
+  &__bar { height: 8px; border-radius: 99px; background: rgba(var(--tint-rgb), .12); overflow: hidden;
+    span { display: block; height: 100%; transform-origin: left; transform: scaleX(0); border-radius: inherit; position: relative;
+      background: linear-gradient(90deg, $droid, var(--accent-soft));
+      &::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .55) 50%, transparent 70%); animation: shine 1.2s linear infinite; } } }
+  &__meta { display: flex; justify-content: space-between; gap: .8rem; margin-top: .8rem; font-size: .78rem; color: var(--muted); text-align: left;
+    code { color: $droid; font-size: .76rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    strong { color: var(--ink); font-variant-numeric: tabular-nums; } }
+}
+@keyframes card-in { from { opacity: 0; transform: translateY(24px) scale(.96); } }
+@keyframes shine { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+// Android robot
+.droid { position: relative; width: 150px; margin: 0 auto; display: grid; justify-items: center;
+  svg { overflow: visible; animation: hop 1.4s ease-in-out infinite; }
+  .g { fill: $droid; }
+  .e { fill: #0a1322; animation: blink 3.2s infinite; transform-box: fill-box; transform-origin: center; }
+  line { stroke: $droid; stroke-width: 3.5; stroke-linecap: round; }
+  &__ant { transform-box: view-box; &--l { transform-origin: 40px 30px; animation: ant-l 1.4s ease-in-out infinite; } &--r { transform-origin: 80px 30px; animation: ant-r 1.4s ease-in-out infinite; } }
+  &__arm { transform-box: fill-box; &--l { transform-origin: 50% 8%; animation: wave-l 1.4s ease-in-out infinite; } &--r { transform-origin: 50% 8%; animation: wave-r 1.4s ease-in-out infinite; } }
+  &__shadow { width: 80px; height: 10px; border-radius: 50%; background: rgba(0, 0, 0, .4); filter: blur(4px); margin-top: -2px; animation: shadow 1.4s ease-in-out infinite; }
+}
+@keyframes hop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-16px); } 60% { transform: translateY(-16px); } }
+@keyframes shadow { 0%, 100% { transform: scale(1); opacity: .6; } 50% { transform: scale(.7); opacity: .3; } }
+@keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+@keyframes ant-l { 50% { transform: rotate(-18deg); } }
+@keyframes ant-r { 50% { transform: rotate(18deg); } }
+@keyframes wave-l { 50% { transform: rotate(28deg); } }
+@keyframes wave-r { 50% { transform: rotate(-28deg); } }
+
+@media (prefers-reduced-motion: reduce) { .loader { transition: none; } }
